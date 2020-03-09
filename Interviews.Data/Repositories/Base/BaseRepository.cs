@@ -33,6 +33,26 @@ namespace Interviews.Data.Repositories.Base
 
         /// <inheritdoc />
         /// <summary>
+        ///     Gets the IQueryOver for the .
+        /// </summary>
+        /// <returns>An IQueryOver for the repository's entity.</returns>
+        public virtual IQueryable<T> GetIQueryable(Expression<Func<T, bool>> expression, List<string> includes = null)
+        {
+            var queryableResultWithIncludes = DbSet.AsQueryable();
+            if (includes != null)
+            {
+                // fetch a Queryable that includes all expression-based includes
+                queryableResultWithIncludes = includes
+                .Aggregate(DbSet.AsQueryable(),
+                    (current, include) => current.Include(include));
+            }
+
+            // return the query using the specification's criteria expression
+            return queryableResultWithIncludes.Where(expression);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         ///     Gets an entity by its id.
         /// </summary>
         /// <param name="id">The entity id.</param>
@@ -60,9 +80,9 @@ namespace Interviews.Data.Repositories.Base
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, List<string> includes = null)
         {
-            return await DbSet.FirstOrDefaultAsync(expression);
+            return await GetIQueryable(expression, includes).FirstOrDefaultAsync(expression);
         }
 
         /// <inheritdoc />
@@ -70,9 +90,9 @@ namespace Interviews.Data.Repositories.Base
         ///     Gets all instances of the entity type by expression parameter
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> expression, List<string> includes = null)
         {
-            return await DbSet.Where(expression).ToListAsync();
+            return await GetIQueryable(expression, includes).ToListAsync();
         }
 
         /// <inheritdoc />

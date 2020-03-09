@@ -27,7 +27,8 @@ namespace Interviews.Data.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-UN7E7G8\\SQLExpress;Database=interviewdb;Trusted_Connection=True;");
             }
         }
 
@@ -39,6 +40,8 @@ namespace Interviews.Data.Entities
             {
                 entity.HasKey(e => e.ApplicantId);
 
+                entity.Property(e => e.ApplicantId).ValueGeneratedNever();
+
                 entity.Property(e => e.City)
                     .IsRequired()
                     .HasMaxLength(80)
@@ -47,12 +50,6 @@ namespace Interviews.Data.Entities
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasColumnName("lastName")
-                    .HasMaxLength(200)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -155,6 +152,12 @@ namespace Interviews.Data.Entities
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
 
+                entity.HasOne(d => d.ParentTechnology)
+                    .WithMany(p => p.RecruiterProcesses)
+                    .HasForeignKey(d => d.ParentTechnologyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ParentTechnology_RecruiterProcess");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.RecruiterProcesses)
                     .HasForeignKey(d => d.UserId)
@@ -186,7 +189,7 @@ namespace Interviews.Data.Entities
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(80)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Role)

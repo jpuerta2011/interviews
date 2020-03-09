@@ -10,5 +10,6 @@ namespace Interviews.Services.Models
         public string Name { get; set; }
         public long? ParentTechnologyId { get; set; }
         public bool? State { get; set; }
+        public short Code { get; set; }
     }
 }

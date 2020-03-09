@@ -18,9 +18,14 @@ namespace Interviews.Api.Automapper
 
             CreateMap<Models.RecruiterProcesses, Entities.RecruiterProcesses>()
                 .ForMember(d => d.RecruiterProcessTechnologies, opt => opt.Ignore())
+                .ForMember(d => d.ParentTechnology, opt => opt.Ignore())
+                .ForMember(d => d.User, opt => opt.Ignore())
                 .ForMember(d => d.Interviews, opt => opt.Ignore());
 
+            CreateMap<Models.Interviews, Entities.Interviews>()
+                .ForMember(d => d.Applicant, opt => opt.Ignore());
 
+            CreateMap<Models.Applicants, Entities.Applicants>();
         }
     }
 }

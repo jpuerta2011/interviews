@@ -12,6 +12,8 @@ namespace Interviews.Services
         T GetInstance<T>() where T : IService;
         ISecurityService SecurityService { get; }
         ITechnologiesService TechnologiesService { get; }
+        IRecruiterProcessesService RecruiterProcessesService { get; }
+        IInterviewsService InterviewsService { get; }
     }
     
     public class ServiceFactory : IServiceFactory
@@ -28,5 +30,9 @@ namespace Interviews.Services
         public ISecurityService SecurityService => GetInstance<ISecurityService>();
 
         public ITechnologiesService TechnologiesService => GetInstance<ITechnologiesService>();
+
+        public IRecruiterProcessesService RecruiterProcessesService => GetInstance<IRecruiterProcessesService>();
+
+        public IInterviewsService InterviewsService => GetInstance<IInterviewsService>();
     }
 }

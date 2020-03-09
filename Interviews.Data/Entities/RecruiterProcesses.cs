@@ -15,7 +15,9 @@ namespace Interviews.Data.Entities
         public long UserId { get; set; }
         public string Description { get; set; }
         public bool? State { get; set; }
+        public long ParentTechnologyId { get; set; }
 
+        public virtual Technologies ParentTechnology { get; set; }
         public virtual Users User { get; set; }
         public virtual ICollection<Interviews> Interviews { get; set; }
         public virtual ICollection<RecruiterProcessTechnologies> RecruiterProcessTechnologies { get; set; }

@@ -10,9 +10,8 @@ namespace Interviews.Data.Entities
             Interviews = new HashSet<Interviews>();
         }
 
-        public long ApplicantId { get; set; }
+        public int ApplicantId { get; set; }
         public string Name { get; set; }
-        public string LastName { get; set; }
         public string Email { get; set; }
         public string Street { get; set; }
         public string Suite { get; set; }

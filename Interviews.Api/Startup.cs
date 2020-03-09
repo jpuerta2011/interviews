@@ -92,6 +92,7 @@ namespace Interviews.Api
             services.AddScoped<IInterviewsRepository, InterviewsRepository>();
             services.AddScoped<IInterviewTypesRepository, InterviewTypesRepository>();
             services.AddScoped<IRecruiterProcessesRepository, RecruiterProcessesRepository>();
+            services.AddScoped<IRecruiterProcessTechnologiesRepository, RecruiterProcessTechnologiesRepository>();
             services.AddScoped<ITechnologiesRepository, TechnologiesRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             #endregion
@@ -104,6 +105,8 @@ namespace Interviews.Api
             #region Domain services
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<ITechnologiesService, TechnologiesService>();
+            services.AddScoped<IRecruiterProcessesService, RecruiterProcessesService>();
+            services.AddScoped<IInterviewsService, InterviewsService>();
             #endregion
 
             services.AddScoped<IServiceFactory, ServiceFactory>();

@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Interviews.Data.Repositories
 {
-    public interface IApplicantsRepository : Base.IBaseRepository<long, Applicants>
+    public interface IApplicantsRepository : Base.IBaseRepository<int, Applicants>
     {
 
     }
 
-    public class ApplicantsRepository : Base.BaseRepository<long, Applicants>, IApplicantsRepository
+    public class ApplicantsRepository : Base.BaseRepository<int, Applicants>, IApplicantsRepository
     {
         public ApplicantsRepository(InterviewDbContext context) : base(context) { }
     }

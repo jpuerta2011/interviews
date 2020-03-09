@@ -15,6 +15,7 @@ namespace Interviews.Data
         ITechnologiesRepository TechnologiesRepository { get; }
         IRecruiterProcessesRepository RecruiterProcessesRepository { get; }
         IRecruiterProcessTechnologiesRepository RecruiterProcessTechnologiesRepository { get; }
+        IApplicantsRepository ApplicantsRepository { get; }
     }
 
     public class RepositoryFactory : IRepositoryFactory
@@ -38,5 +39,6 @@ namespace Interviews.Data
         public ITechnologiesRepository TechnologiesRepository => GetInstance<ITechnologiesRepository>();
         public IRecruiterProcessesRepository RecruiterProcessesRepository => GetInstance<IRecruiterProcessesRepository>();
         public IRecruiterProcessTechnologiesRepository RecruiterProcessTechnologiesRepository => GetInstance<IRecruiterProcessTechnologiesRepository>();
+        public IApplicantsRepository ApplicantsRepository => GetInstance<IApplicantsRepository>();
     }
 }

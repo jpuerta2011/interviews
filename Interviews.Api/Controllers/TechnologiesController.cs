@@ -1,53 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Interviews.Common.Exceptions;
+using Interviews.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Interviews.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TechnologiesController : ControllerBase
+    [Authorize]
+    public class TechnologiesController : CustomControllerBase
     {
+
+        public TechnologiesController(IServiceFactory serviceFactory) : base(serviceFactory) { }
+
         [HttpGet("parents")]
         public async Task<IActionResult> GetTechnologiesParents()
         {
-
-        }
-        
-        
-        // GET: api/Technologies
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            var techologies = await Services.TechnologiesService.GetParentTechnologiesAsync();
+            return Ok(techologies);
         }
 
         // GET: api/Technologies/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}/children")]
+        public async Task<IActionResult> GetChildren(long id)
         {
-            return "value";
-        }
+            if(id == 0)
+            {
+                throw new BadRequestCustomException("Debe indicar un id valido", "");
+            }
 
-        // POST: api/Technologies
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Technologies/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var technologies = await Services.TechnologiesService.GetChildrenTechnologiesAsync(id);
+            return Ok(technologies);
         }
     }
 }

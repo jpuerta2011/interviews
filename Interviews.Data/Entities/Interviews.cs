@@ -7,7 +7,7 @@ namespace Interviews.Data.Entities
     {
         public long InterviewId { get; set; }
         public long RecruiterProcessId { get; set; }
-        public long ApplicantId { get; set; }
+        public int ApplicantId { get; set; }
         public DateTime Date { get; set; }
         public long InterviewTypeId { get; set; }
         public bool? State { get; set; }
