@@ -16,14 +16,10 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
 import { CanActivateAuthGuard } from './services/auth-guard';
 import { AuthenticationService } from './services/auth-service';
 import { GeneralHttpService } from './services/general-http-service';
 import { CustomHttpInterceptor } from './services/custom-http-interceptor';
-import { RecruitmentProcessListComponent } from './main/recruitment-process/recruitment-process-list/recruitment-process-list.component';
-import { RecruitmentProcessCreateComponent } from './main/recruitment-process/recruitment-process-create/recruitment-process-create.component';
-import { RecruitmentProcessEditComponent } from './main/recruitment-process/recruitment-process-edit/recruitment-process-edit.component';
 
 const appRoutes: Routes = [
     {
@@ -32,7 +28,7 @@ const appRoutes: Routes = [
     },
     {
         path        : 'processes',
-        loadChildren: './main/copasst-module/copasst.module#CopasstModule'
+        loadChildren: './main/recruitment-process/recruitment-process.module#RecruitmentProcessModule'
     },
     {
         path      : '**',
@@ -43,10 +39,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent,
-        RecruitmentProcessListComponent,
-        RecruitmentProcessCreateComponent,
-        RecruitmentProcessEditComponent,
+        AppComponent
     ],
     imports     : [
         BrowserModule,
@@ -72,7 +65,6 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
     ],
     bootstrap   : [
         AppComponent

@@ -1,3 +1,48 @@
-<p>
-  recruitment-process-list works!
-</p>
+<div id="cocola-meeting-list" class="page-layout simple tabbed">
+  <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <span class="mat-display-1 my-0 my-sm-24 welcome-message">
+        Procesos de contratación
+      </span>
+    </div>
+  </div>
+
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="Descripción" matSortDisableClear 
+      matSortDirection="asc">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="technology">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tecnologia </th>
+        <td mat-cell *matCellDef="let row"> {{row.parentTechnologyName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit-action">
+        <th mat-header-cell *matHeaderCellDef ></th>
+        <td mat-cell *matCellDef="let row">  
+          <button mat-icon-button color="primary" (click)="onRecruitmentProcessEdit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="resultsLength"></mat-paginator>
+  </div>
+</div>
