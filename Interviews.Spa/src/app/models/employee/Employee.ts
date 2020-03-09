@@ -1,0 +1,47 @@
+import { User } from '../user/User';
+
+export class Employee {
+    id: number;
+    user: User;
+    birthdate: Date;
+    birthCountryId: number;
+    birthDepartmentId: number;
+    birthCityId: number;
+    homeCountryId: number;
+    homeDepartmentId: number;
+    homeCityId: number;
+    address: string;
+    socialNetworkAddress: string;
+    cellphone: string;
+    phone: string;
+    socialClass: number;
+    race: string;
+    ethnicGroupId: number;
+    genderId: number;
+    maritalStatusId: number;
+    childrenStudyingCount: number;
+    childrenWorkingCount: number;
+    childrenLivingWithParentsCount: number;
+    educationLevelId: number;
+    homeTypeId: number;
+    homeTypeOwnerId: number;
+    officeId: number;
+    contractTypeId: number;
+    jobCountryId: number;
+    jobDepartmentId: number;
+    jobCityId: number;
+    jobAddress: string;
+    jobScheduleId: number;
+    epsId: number;
+    afpId: number;
+    ipsId: number;
+    arlId: number;
+    compensationFundId: number;
+    prepaidMedicineId: number;
+    salary: number;
+    smmlvCount: number;
+    createdDate: Date;
+    updatedDate: Date;
+    createdBy: number;
+    modifiedBy: number;
+}

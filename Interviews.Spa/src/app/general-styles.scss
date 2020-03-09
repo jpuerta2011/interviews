@@ -1,0 +1,45 @@
+.formated-table
+{
+        
+    table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    td, th {
+        width: 25%;
+        text-align: left;
+    }
+
+}
+.formated-table-tight
+{
+        
+    table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    td, th {
+        width: 15%;
+        text-align: left;
+    }
+
+}
+.formated-table-x-tight
+{
+        
+    table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    td, th {
+        width: 10%;
+        text-align: left;
+    }
+
+}
+.mat-form-field {
+    width: 100%;
+}
